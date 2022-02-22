@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  # - name: centos8
+  #   image: paulfantom/centos-molecule:8
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  #   pre_build_image: true
+  #   privileged: true
+  - name: bionic
+    image: paulfantom/ubuntu-molecule:18.04
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    pre_build_image: true
+    privileged: true
+  # - name: fedora
+  #   image: paulfantom/fedora-molecule:30
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  #   pre_build_image: true
+  #   privileged: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: converge.yml

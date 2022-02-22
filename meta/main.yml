@@ -1,0 +1,35 @@
+galaxy_info:
+  role_name: elastic_apm
+  author: felipefrizzo
+  description: Ansible role for download and configure Elastic APM Server.
+
+  license: MIT
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - 30
+        - 31
+
+  galaxy_tags:
+    - monitoring
+    - elastic
+    - apm
+    - metrics
+    - system
+
+dependencies: []

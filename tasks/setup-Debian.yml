@@ -1,0 +1,30 @@
+---
+- name: Ensure required dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+    state: present
+
+- name: Add Elasticsearch apt key.
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add APM server repository.
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/{{ elastic_apm_version }}/apt stable main"
+    state: present
+    update_cache: true
+
+- name: Install APM server.
+  apt:
+    name: "{{ elastic_apm_package }}"
+    state: present
+
+- name: Add APM server user to adm group (Debian).
+  user:
+    name: apm-server
+    group: apm-server
+    groups: adm
+  notify: restart apm-server

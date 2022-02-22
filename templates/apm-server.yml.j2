@@ -1,0 +1,32 @@
+{{ ansible_managed|comment }}
+
+apm-server:
+  # Defines the host and port the server is listening on.
+  host: "{{ elastic_apm_network_host }}:{{elastic_apm_http_port}}"
+
+  output:
+    elasticsearch:
+      enabled: {{ elastic_apm_elasticsearch_enabled }}
+
+      # The list of Elasticsearch nodes to connect to. The events are distributed to theses nodes in round robin order.
+      hosts: 
+      {% for host in elastic_apm_elasticsearch_host %}
+        - {{ host }}
+      {% endfor %}
+      protocol: {{ elastic_apm_elasticsearch_protocol }}
+
+      {% if elastic_apm_elasticsearch_apikey is defined %}
+      api_key: {{ elastic_apm_elasticsearch_apikey}}
+      {% else %}
+      #api_key: "elastic_api_key"
+      {% endif%}
+      {% if elastic_apm_elasticsearch_username is defined %}
+      username: {{ elastic_apm_elasticsearch_password}}
+      {% else %}
+      #username: "elastic_username"
+      {% endif%}
+      {% if elastic_apm_elasticsearch_password is defined %}
+      password: {{ elastic_apm_elasticsearch_password}}
+      {% else %}
+      #password: "elastic_password"
+      {% endif%}

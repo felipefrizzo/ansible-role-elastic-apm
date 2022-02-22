@@ -1,0 +1,9 @@
+---
+- name: Create APM server configuration files.
+  template:
+    src: apm-server.yml.j2
+    dest: /etc/apm-server/apm-server.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart apm-server
