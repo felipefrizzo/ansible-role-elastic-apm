@@ -6,6 +6,6 @@ elastic_apm_network_host: 0.0.0.0
 elastic_apm_http_port: 8200
 
 elastic_apm_elasticsearch_enabled: true
-elastic_apm_elasticsearch_protocol: http
+elastic_apm_elasticsearch_protocol: https
 elastic_apm_elasticsearch_host:
   - localhost:9200
